@@ -5,7 +5,8 @@ module SolidusVirtualGiftCard
     module OrderDecorator
       def self.prepended(base)
         base.class_eval do
-          state_machine.after_transition to: :complete, do: :send_gift_card_emails
+          # Remove this transition because send_gift_card_emails was being triggered twice
+          # state_machine.after_transition to: :complete, do: :send_gift_card_emails
 
           has_many :gift_cards, through: :line_items
         end
