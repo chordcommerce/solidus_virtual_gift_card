@@ -23,7 +23,9 @@ module SolidusVirtualGiftCard
         end
       end
 
-      def finalize!
+      # Solidus 3 completes orders via the private Spree::Order#finalize
+      # (finalize! is only a deprecated wrapper), so hook that.
+      private def finalize
         super
         inventory_units = self.inventory_units
         gift_cards.each_with_index do |gift_card, index|
