@@ -8,7 +8,7 @@ module SolidusVirtualGiftCard
           has_many :gift_cards, class_name: 'Spree::VirtualGiftCard', dependent: :destroy
           delegate :gift_card?, :gift_card, to: :product
 
-          self.whitelisted_ransackable_associations += %w[order]
+          self.allowed_ransackable_associations += %w[order]
         end
       end
 
